@@ -73,7 +73,7 @@ module.exports={//配置对象
   //5、开发服务器配置-->webpack-dev-server
   devServer:{
     open:true,//自动打开服务器
-    quiet:true,//不做太多日志输出
+    // quiet:true,//不做太多日志输出
   },
 
   //6、开发中方便看哪一行出错，开启source-map调式
