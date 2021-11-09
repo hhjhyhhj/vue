@@ -73,7 +73,19 @@ module.exports={//配置对象
   //5、开发服务器配置-->webpack-dev-server
   devServer:{
     open:true,//自动打开服务器
-    // quiet:true,//不做太多日志输出
+    // quiet:true,//不做太多日志输出,
+    //配置代理
+    proxy: {
+      port:8080,
+      //处理以/api开头的路径
+      '/api': {
+        target: 'http://localhost:3000',
+        //转发请求的时候去除/api
+        pathRewrite: { '^/api': '' },
+        //如果协议也不相同,必须加上
+        changeOrigin: true,
+      },
+    },
   },
 
   //6、开发中方便看哪一行出错，开启source-map调式
