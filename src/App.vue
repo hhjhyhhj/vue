@@ -14,6 +14,7 @@
 import Header from './components/Header'
 import List from './components/List'
 import Footer from './components/Footer'
+import { saveTodos , readTodos } from "./utils/storageUtils";
  export default{//配置对象
   data(){
     return {
@@ -24,12 +25,29 @@ import Footer from './components/Footer'
         ]
     }
   },
+  //声明周期
+  mounted(){
+    setTimeout(() => {
+        //读取local保存的todos，更新todos
+        this.todos = readTodos()
+    }, 1000);
+  },
   methods:{
     addTodo(todo){
       this.todos.unshift(todo)
     },
     deleteTodo(index){
       this.todos.splice(index,1)
+    }
+  },
+  watch:{
+    todos:{
+      deep:true,//深度监视(本身和内部所有层次的数据)
+      //将todo保存到local（以json的形式）
+      hanlder(value){
+        // localStorage.setItem('todos_key',JSON.stringify(value))
+        saveTodos(value)
+      }
     }
   },
   components:{
