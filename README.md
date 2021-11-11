@@ -66,6 +66,35 @@
     按照上面的方法就能实现任意后代向父组件传递参数
 ## vue组件化开发
 
+## 与后台通信
+    1) 使用什么发ajax请求？
+        vue-resource 
+        axios 
+    2) 在什么时候发送请求？
+        mounted()中
+        事件监听回调函数或相关函数中
+##  vue UI 组件
+    常用的UI组件
+        PC：element/iview
+        Mobile：mint-ui/vant-ui/cube-ui
+    mint-ui 的使用
+        根据官方文档使用
+        配置实现按需引入打包
 
 ## 解决开发环境跨域的问题
+
+
+## 路由的2种模式比较 解决history模式404的问题
+    hash模式：
+        路径种带#：http://localhost:8080/#/home/news
+        发送请求的路径：http://localhost:8080 项目的根路径
+        响应：返回的总是index页面==> path部分(/home/news)被解析为前台路由路径
     
+    history模式：
+         路径中不带#：http://localhost:8080/#/home/news
+        发送请求的路径：http://localhost:8080/#/home/news
+        响应：404错误
+        希望：如果没有对应的资源，返回index页面，path部分(/home/news)被解析为前台路由路径
+        解决：添加配置
+            devServe:historyApiFallback：true   //任意的404页面响应都会被替代为index.html
+            output:publicPath：'/'  // 引入打包的文件的路径以/开头

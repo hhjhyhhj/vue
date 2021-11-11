@@ -17,7 +17,8 @@ module.exports={//配置对象
   output:{
     //filename-文件名  path 指定打包后的绝对路径  [name]代表入口entry的表示名称app
     filename:'static/js/[name].bundle.js',
-    path:path.resolve(__dirname,'dist')
+    path:path.resolve(__dirname,'dist'),
+    publicPath:'/'  //引入的打包文件的路径左侧以/开头
   },
 
   //3、模块加载器
@@ -85,7 +86,9 @@ module.exports={//配置对象
         //如果协议也不相同,必须加上
         changeOrigin: true,
       },
+      
     },
+    historyApiFallback:true //任意的404响应都会被代替为index.html
   },
 
   //6、开发中方便看哪一行出错，开启source-map调式
